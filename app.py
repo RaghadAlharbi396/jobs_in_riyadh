@@ -33,7 +33,14 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Title
-st.markdown('<h1 style="text-align:right" dir="rtl">هل الرياض هي أرض الأحلام لحديثي التخرج؟</h1>', unsafe_allow_html=True)
+st.markdown("""
+<div style="display: flex; align-items: center; justify-content: space-between; direction: rtl;">
+    <h1 style="margin-right: 10px;">هل الرياض هي أرض الأحلام لحديثي التخرج؟</h1>
+    <img src="https://cdn.alweb.com/thumbs/travel/article/fit710x532/%25D9%2585%25D8%25A7-%25D9%2587%25D9%258A-%25D9%2585%25D9%2585%25D9%258A%25D8%25B2%25D8%25A7%25D8%25AA-%25D9%2585%25D8%25AF%25D9%258A%25D9%2586%25D8%25A9-%25D8%25A7%25D9%2584%25D8%25B1%25D9%258A%25D8%25A7%25D8%25B6.jpg" 
+         alt="الرياض" width="120" height="90" style="border-radius: 8px; margin-left: 10px;">
+</div>
+""", unsafe_allow_html=True)
+
 
 # Intro
 st.markdown('<p style="text-align:right" dir="rtl">الحمد لله، تخرجت من الجامعة، لكن لم أجد وظيفة حتى الآن. والكل يقول لي إن الرياض هي المكان الذي سأجد فيه وظيفة الأحلام.</p>', unsafe_allow_html=True)
