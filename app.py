@@ -6,20 +6,24 @@ import pandas as pd
 # Load the data
 jobs_data = pd.read_csv('clean_job_data.csv')
 
-# Custom styling for Streamlit app
+# Custom styling for Streamlit app using inline CSS
 st.markdown("""
     <style>
+        /* Background Color */
         body {
-            background-color: #9EC6F3;  /* App background */
+            background-color: #fff3e2;  /* App background */
         }
-        h1, h3 {
-            color: #003366;
-        }
+        /* Container Background Color */
         .css-18e3th9 {
-            background-color: #FFF1D5;  /* Light background color for containers */
+            background-color: #f5f5f5;  /* Light background color for containers */
             padding: 2rem;
             border-radius: 12px;
         }
+        /* Title and header text color */
+        h1, h3 {
+            color: #80a3ec;  /* Text color */
+        }
+        /* Button style */
         .stButton>button {
             background-color: #003366;
             color: white;
