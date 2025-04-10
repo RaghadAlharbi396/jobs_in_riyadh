@@ -36,10 +36,11 @@ st.markdown("""
 st.markdown("""
 <div style="display: flex; align-items: center; justify-content: space-between; direction: rtl;">
     <h1 style="margin-right: 10px;">هل الرياض هي أرض الأحلام لحديثي التخرج؟</h1>
-    <img src="https://cdn.alweb.com/thumbs/travel/article/fit710x532/%25D9%2585%25D8%25A7-%25D9%2587%25D9%258A-%25D9%2585%25D9%2585%25D9%258A%25D8%25B2%25D8%25A7%25D8%25AA-%25D9%2585%25D8%25AF%25D9%258A%25D9%2586%25D8%25A9-%25D8%25A7%25D9%2584%25D8%25B1%25D9%258A%25D8%25A7%25D8%25B6.jpg" 
+    <img src="https://cdn.alweb.com/thumbs/travel/article/fit710x532/ما-هي-مميزات-مدينة-الرياض.jpg" 
          alt="الرياض" width="120" height="90" style="border-radius: 8px; margin-left: 10px;">
 </div>
 """, unsafe_allow_html=True)
+
 
 
 # Intro
