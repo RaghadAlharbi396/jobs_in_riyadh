@@ -138,28 +138,38 @@ st.markdown('<p style="text-align:right" dir="rtl">بحسب دراسة اجرت�
 
 st.markdown("""<p style="text-align:right" dir="rtl">بعد مراجعة هذه البيانات، يمكننا أن نقول إن الرياض هي أرض الأحلام لحديثي التخرج. حيث إن معظم الوظائف المعلنة توجد في الرياض، ولا يوجد تمييز على أساس الجنس، مما يتيح الكثير من الفرص للخريجين الجدد. صحيح أن الراتب المتوقع قد لا يكون مرتفعًا جدًا، ولكن إذا أخذنا في الاعتبار العمل لمدة سنتين لاكتساب الخبرة، يمكننا بعدها البحث عن وظائف براتب أعلى.
 </p>""", unsafe_allow_html=True)
-# Divider or headline
+# Section title in Arabic
 st.markdown('<hr>', unsafe_allow_html=True)
-st.markdown('<h3 style="text-align:right" dir="rtl">هل تبحث عن وظيفة في الرياض كخريج جديد؟</h3>', unsafe_allow_html=True)
+st.markdown('<h3 style="text-align:right" dir="rtl">اختر المسمى الوظيفي لمعرفة متوسط الرواتب في الرياض للخريجين الجدد</h3>', unsafe_allow_html=True)
 
-# Add a button
-if st.button('ابحث عن وظائف لخريجي الرياض'):
-    # Ensure proper filtering and conversion
-    jobs_in_riyadh['experience in years'] = pd.to_numeric(jobs_in_riyadh['experience in years'], errors='coerce')
-    fresh_graduates = jobs_in_riyadh[jobs_in_riyadh['experience in years'] == 0].copy()
-    fresh_graduates['Salary'] = pd.to_numeric(fresh_graduates['Salary'], errors='coerce')
-    fresh_graduates = fresh_graduates.dropna(subset=['Salary'])
+# Make sure job titles are filtered only from Riyadh & fresh grads
+jobs_in_riyadh['experience in years'] = pd.to_numeric(jobs_in_riyadh['experience in years'], errors='coerce')
+fresh_grads_riyadh = jobs_in_riyadh[jobs_in_riyadh['experience in years'] == 0].copy()
 
-    if not fresh_graduates.empty:
-        avg_salary = fresh_graduates['Salary'].mean()
-        st.markdown(
-            f'<p style="text-align:right" dir="rtl">متوسط الرواتب المتاحة للخريجين الجدد في الرياض هو تقريبًا <strong>{avg_salary:,.0f} ريال سعودي</strong>.</p>',
-            unsafe_allow_html=True
-        )
-    else:
-        st.markdown(
-            '<p style="text-align:right" dir="rtl">عذرًا، لا توجد وظائف متاحة حاليًا للخريجين الجدد في الرياض.</p>',
-            unsafe_allow_html=True
-        )
+# Clean salary column
+fresh_grads_riyadh['Salary'] = pd.to_numeric(fresh_grads_riyadh['Salary'], errors='coerce')
+fresh_grads_riyadh = fresh_grads_riyadh.dropna(subset=['Salary'])
+
+# Get unique job titles
+job_titles = sorted(fresh_grads_riyadh['job_title'].dropna().unique())
+
+# User selects job title
+selected_title = st.selectbox('اختر المسمى الوظيفي', job_titles, index=0)
+
+# Filter based on selection
+filtered_jobs = fresh_grads_riyadh[fresh_grads_riyadh['job_title'] == selected_title]
+
+# Show average salary
+if not filtered_jobs.empty:
+    avg_salary = filtered_jobs['Salary'].mean()
+    st.markdown(
+        f'<p style="text-align:right" dir="rtl">متوسط الراتب لمسمى <strong>{selected_title}</strong> في الرياض هو تقريبًا <strong>{avg_salary:,.0f} ريال سعودي</strong>.</p>',
+        unsafe_allow_html=True
+    )
+else:
+    st.markdown(
+        '<p style="text-align:right" dir="rtl">عذرًا، لا توجد بيانات حالية لهذا المسمى الوظيفي.</p>',
+        unsafe_allow_html=True
+    )
 
 
