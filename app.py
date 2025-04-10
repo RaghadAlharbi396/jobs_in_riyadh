@@ -138,4 +138,28 @@ st.markdown('<p style="text-align:right" dir="rtl">بحسب دراسة اجرت�
 
 st.markdown("""<p style="text-align:right" dir="rtl">بعد مراجعة هذه البيانات، يمكننا أن نقول إن الرياض هي أرض الأحلام لحديثي التخرج. حيث إن معظم الوظائف المعلنة توجد في الرياض، ولا يوجد تمييز على أساس الجنس، مما يتيح الكثير من الفرص للخريجين الجدد. صحيح أن الراتب المتوقع قد لا يكون مرتفعًا جدًا، ولكن إذا أخذنا في الاعتبار العمل لمدة سنتين لاكتساب الخبرة، يمكننا بعدها البحث عن وظائف براتب أعلى.
 </p>""", unsafe_allow_html=True)
+# Divider or headline
+st.markdown('<hr>', unsafe_allow_html=True)
+st.markdown('<h3 style="text-align:right" dir="rtl">هل تبحث عن وظيفة في الرياض كخريج جديد؟</h3>', unsafe_allow_html=True)
+
+# Add a button
+if st.button('ابحث عن وظائف لخريجي الرياض'):
+    # Ensure proper filtering and conversion
+    jobs_in_riyadh['experience in years'] = pd.to_numeric(jobs_in_riyadh['experience in years'], errors='coerce')
+    fresh_graduates = jobs_in_riyadh[jobs_in_riyadh['experience in years'] == 0].copy()
+    fresh_graduates['Salary'] = pd.to_numeric(fresh_graduates['Salary'], errors='coerce')
+    fresh_graduates = fresh_graduates.dropna(subset=['Salary'])
+
+    if not fresh_graduates.empty:
+        avg_salary = fresh_graduates['Salary'].mean()
+        st.markdown(
+            f'<p style="text-align:right" dir="rtl">متوسط الرواتب المتاحة للخريجين الجدد في الرياض هو تقريبًا <strong>{avg_salary:,.0f} ريال سعودي</strong>.</p>',
+            unsafe_allow_html=True
+        )
+    else:
+        st.markdown(
+            '<p style="text-align:right" dir="rtl">عذرًا، لا توجد وظائف متاحة حاليًا للخريجين الجدد في الرياض.</p>',
+            unsafe_allow_html=True
+        )
+
 
