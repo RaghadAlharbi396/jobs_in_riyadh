@@ -16,6 +16,11 @@ st.markdown('<p style="text-align:right" dir="rtl">الحمد لله، تخرج�
 # Another paragraph in RTL
 st.markdown('<p style="text-align:right" dir="rtl">لكن، هل هذا الكلام صحيح؟</p>', unsafe_allow_html=True)
 
+# More paragraphs in RTL
+st.markdown('<p style="text-align:right" dir="rtl">لقد تم جمع بيانات الوظائف المعلنة على منصة جدارات وحللتها لأرى إذا كانت الرياض هي أكثر مدينة تعلن عن وظائف لحديثي التخرج.</p>', unsafe_allow_html=True)
+
+# Another question in RTL
+st.markdown('<h3 style="text-align:right" dir="rtl">هل الرياض هي المدينة الأكثر إعلانًا عن الوظائف؟</h3>', unsafe_allow_html=True)
 # Aggregate data by region
 region_counts = jobs_data['region'].value_counts().reset_index()
 region_counts.columns = ['region', 'count']
@@ -30,7 +35,6 @@ fig = go.Figure(data=go.Bar(
 
 # Customize the chart layout
 fig.update_layout(
-    title='Proportion of Job Postings by Region',
     xaxis_title='Job Postings Count',
     yaxis_title='Region',
     plot_bgcolor='white'
@@ -61,7 +65,6 @@ fig_gender = go.Figure(data=go.Bar(
 
 # Customize layout
 fig_gender.update_layout(
-    title='Gender Preference in Job Postings (Riyadh)',
     xaxis_title='Job Postings Count',
     yaxis_title='Gender',
     plot_bgcolor='white'
@@ -93,7 +96,6 @@ fig_experience = go.Figure(data=go.Bar(
 
 # Customize layout
 fig_experience.update_layout(
-    title='Job Opportunities by Experience Level (Riyadh)',
     xaxis_title='Job Postings Count',
     yaxis_title='Experience Level',
     plot_bgcolor='white'
@@ -111,10 +113,6 @@ jobs_in_riyadh['experience in years'] = pd.to_numeric(jobs_in_riyadh['experience
 # Filter fresh graduates
 fresh_graduates = jobs_in_riyadh[jobs_in_riyadh['experience in years'] == 0].copy()
 
-# Debug output
-st.write(f"Fresh graduate rows: {len(fresh_graduates)}")
-st.write(fresh_graduates[['experience in years', 'Salary']].head())
-
 # Convert Salary to numeric
 fresh_graduates['Salary'] = pd.to_numeric(fresh_graduates['Salary'], errors='coerce')
 fresh_graduates = fresh_graduates.dropna(subset=['Salary'])
@@ -124,7 +122,6 @@ fig_salary = px.histogram(
     fresh_graduates,
     x='Salary',
     nbins=20,
-    title='Salary Distribution for Fresh Graduates in Riyadh',
     color_discrete_sequence=['#B0C4DE']
 )
 
