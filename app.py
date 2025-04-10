@@ -35,9 +35,9 @@ st.markdown("""
 # Title
 st.markdown("""
 <div style="display: flex; align-items: center; justify-content: space-between; direction: rtl;">
-    <h1 style="margin-right: 10px;">هل الرياض هي أرض الأحلام لحديثي التخرج؟</h1>
+    <h2 style="margin-right: 10px;">هل الرياض هي أرض الأحلام لحديثي التخرج؟</h2>
     <img src="https://cdn.alweb.com/thumbs/travel/article/fit710x532/ما-هي-مميزات-مدينة-الرياض.jpg" 
-         alt="الرياض" width="120" height="90" style="border-radius: 8px; margin-left: 10px;">
+         alt="الرياض" width="120" height="120" style="border-radius: 8px; margin-left: 10px;">
 </div>
 """, unsafe_allow_html=True)
 
