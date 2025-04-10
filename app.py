@@ -10,13 +10,13 @@ jobs_data = pd.read_csv('clean_job_data.csv')
 st.markdown("""
     <style>
         body {
-            background-color: #f7f7f7;
+            background-color: #9EC6F3;  /* App background */
         }
         h1, h3 {
             color: #003366;
         }
         .css-18e3th9 {
-            background-color: #ffffff;
+            background-color: #FFF1D5;  /* Light background color for containers */
             padding: 2rem;
             border-radius: 12px;
         }
@@ -44,7 +44,7 @@ fig = go.Figure(data=go.Bar(
     x=region_counts['count'],
     y=region_counts['region'],
     orientation='h',
-    marker=dict(color='#B0C4DE')
+    marker=dict(color='#9FB3DF')  # Bar color updated to match your request
 ))
 fig.update_layout(
     title='توزيع إعلانات الوظائف حسب المدينة',
@@ -66,7 +66,7 @@ fig_gender = go.Figure(data=go.Bar(
     x=gender_counts['count'],
     y=gender_counts['gender'],
     orientation='h',
-    marker=dict(color='#FFA07A')
+    marker=dict(color='#9FB3DF')  # Bar color updated to match your request
 ))
 fig_gender.update_layout(
     title='توزيع الوظائف حسب الجنس في الرياض',
@@ -88,7 +88,7 @@ fig_experience = go.Figure(data=go.Bar(
     x=experience_counts['count'],
     y=experience_counts['experience_category'],
     orientation='h',
-    marker=dict(color='#ADD8E6')
+    marker=dict(color='#9FB3DF')  # Bar color updated to match your request
 ))
 fig_experience.update_layout(
     title='الفئة المطلوبة في الوظائف: خبرة أم حديثو التخرج؟',
@@ -109,7 +109,7 @@ fig_salary = px.histogram(
     fresh_graduates,
     x='Salary',
     nbins=20,
-    color_discrete_sequence=['#B0C4DE']
+    color_discrete_sequence=['#9FB3DF']  # Bar color updated to match your request
 )
 fig_salary.update_layout(
     title='توزيع الرواتب للخريجين الجدد في الرياض',
