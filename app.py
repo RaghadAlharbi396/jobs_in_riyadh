@@ -73,7 +73,33 @@ st.markdown('<p style="text-align:right" dir="rtl">من خلال التحليل�
 
 # Experience preference question in RTL
 st.markdown('<h3 style="text-align:right" dir="rtl">هل تفضل الجهات بالرياض أصحاب الخبرة أم حديثي التخرج؟</h3>', unsafe_allow_html=True)
-#st.image('chart/chart3.png', use_container_width=True)
+# Categorize data into 'Experienced' and 'Fresh Graduate'
+jobs_in_riyadh['experience_category'] = jobs_in_riyadh['experience in years'].apply(
+    lambda x: 'Experienced' if int(x) > 0 else 'Fresh Graduate'
+)
+
+# Aggregate data
+experience_counts = jobs_in_riyadh['experience_category'].value_counts().reset_index()
+experience_counts.columns = ['experience_category', 'count']
+
+# Create Plotly chart
+fig_experience = go.Figure(data=go.Bar(
+    x=experience_counts['count'],
+    y=experience_counts['experience_category'],
+    orientation='h',
+    marker=dict(color='#ADD8E6')
+))
+
+# Customize layout
+fig_experience.update_layout(
+    title='Job Opportunities by Experience Level (Riyadh)',
+    xaxis_title='Job Postings Count',
+    yaxis_title='Experience Level',
+    plot_bgcolor='white'
+)
+
+# Display in Streamlit
+st.plotly_chart(fig_experience, use_container_width=True)
 st.markdown('<p style="text-align:right" dir="rtl"> .يظهر التمثيل ان اكثر من نصف الوظائف المعلنة في الرياض لحديثي التخرج، ممكن لان الكثير من الجهات تفضل حديثي التخرج لان حديثي التخرج لديهم الافكار الجديدة والروح الحماسية في العمل </p>', unsafe_allow_html=True)
 
 # Final salary question in RTL
