@@ -5,8 +5,6 @@ import pandas as pd
 # Load the data
 jobs_data = pd.read_csv('clean_job_data.csv')
 
-# Check if data is loaded correctly (use this for debugging)
-st.write(jobs_data.head())
 
 # Title in RTL
 st.markdown('<h1 style="text-align:right" dir="rtl">هل الرياض هي أرض الأحلام لحديثي التخرج؟</h1>', unsafe_allow_html=True)
@@ -20,9 +18,6 @@ st.markdown('<p style="text-align:right" dir="rtl">لكن، هل هذا الكل
 # Aggregate data by region
 region_counts = jobs_data['region'].value_counts().reset_index()
 region_counts.columns = ['region', 'count']
-
-# Check if the data for regions is correct (use this for debugging)
-st.write(region_counts.head())
 
 # Create the Plotly bar chart
 fig = go.Figure(data=go.Bar(
@@ -48,7 +43,31 @@ st.markdown('<p style="text-align:right" dir="rtl">من خلال البيانا�
 
 # Gender discrimination question in RTL
 st.markdown('<h3 style="text-align:right" dir="rtl">هل هناك تمييز بين الجنسين في الوظائف المعلنة بالرياض؟</h3>', unsafe_allow_html=True)
-#st.image('chart/chart2.png', use_container_width=True)
+# Filter for Riyadh
+jobs_in_riyadh = jobs_data[jobs_data['region'] == 'الرياض']
+
+# Aggregate data by gender
+gender_counts = jobs_in_riyadh['gender'].value_counts().reset_index()
+gender_counts.columns = ['gender', 'count']
+
+# Create Plotly bar chart
+fig_gender = go.Figure(data=go.Bar(
+    x=gender_counts['count'],
+    y=gender_counts['gender'],
+    orientation='h',
+    marker=dict(color='#FFA07A')
+))
+
+# Customize layout
+fig_gender.update_layout(
+    title='Gender Preference in Job Postings (Riyadh)',
+    xaxis_title='Job Postings Count',
+    yaxis_title='Gender',
+    plot_bgcolor='white'
+)
+
+# Display in Streamlit
+st.plotly_chart(fig_gender, use_container_width=True)
 # Analysis paragraph about gender in RTL
 st.markdown('<p style="text-align:right" dir="rtl">من خلال التحليل، يتضح أنه لا يوجد تمييز بين الجنسين، حيث تركز الجهات في الرياض على المهارات والكفاءات أكثر من التركيز على جنس المتقدم.</p>', unsafe_allow_html=True)
 
