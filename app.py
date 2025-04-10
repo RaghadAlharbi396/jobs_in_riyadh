@@ -104,7 +104,29 @@ st.markdown('<p style="text-align:right" dir="rtl"> .يظهر التمثيل ا�
 
 # Final salary question in RTL
 st.markdown('<h3 style="text-align:right" dir="rtl">ما هو متوسط رواتب حديثي التخرج بالرياض؟</h3>', unsafe_allow_html=True)
-#st.image('chart/chart4.png', use_container_width=True)
+# Filter data for fresh graduates in Riyadh
+fresh_graduates = jobs_in_riyadh[jobs_in_riyadh['experience in years'] == '0'].copy()
+fresh_graduates['Salary'] = pd.to_numeric(fresh_graduates['Salary'], errors='coerce')
+fresh_graduates = fresh_graduates.dropna(subset=['Salary'])
+
+# Create histogram using Plotly Express
+fig_salary = px.histogram(
+    fresh_graduates,
+    x='Salary',
+    nbins=20,
+    title='Salary Distribution for Fresh Graduates in Riyadh',
+    color_discrete_sequence=['#B0C4DE']
+)
+
+# Update layout for clarity
+fig_salary.update_layout(
+    xaxis_title='Salary (SAR)',
+    yaxis_title='Number of Job Postings',
+    plot_bgcolor='white'
+)
+
+# Show in Streamlit
+st.plotly_chart(fig_salary, use_container_width=True)
 st.markdown('<p style="text-align:right" dir="rtl">متوسط الرواتب لحديثي التخرج في الرياض من 4000 الى 5000 بالشهر لكن السؤال هنا هل يكفي هذا الراتب للعيش بالرياض؟</p>', unsafe_allow_html=True)
 st.markdown('<p style="text-align:right" dir="rtl">بحسب دراسة اجرتها منصة سكن تظهر ان يمكن تقدير متوسط تكلفة المعيشة في السعودية للفرد الواحد خلال الشهر من 3000 إلى 5000 ريال سعودي شهرياً.</p>', unsafe_allow_html=True)
 
