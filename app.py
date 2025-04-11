@@ -46,7 +46,15 @@ st.markdown("""
 # Intro
 st.markdown('<p style="text-align:right" dir="rtl">الحمد لله، تخرجت من الجامعة، لكن لم أجد وظيفة حتى الآن. والكل يقول لي إن الرياض هي المكان الذي سأجد فيه وظيفة الأحلام.</p>', unsafe_allow_html=True)
 st.markdown('<p style="text-align:right" dir="rtl">لكن، هل هذا الكلام صحيح؟</p>', unsafe_allow_html=True)
-st.markdown('<p style="text-align:right" dir="rtl">لقد تم جمع بيانات الوظائف المعلنة على منصة جدارات وحللتها لأرى إذا كانت الرياض هي أكثر مدينة تعلن عن وظائف لحديثي التخرج.</p>', unsafe_allow_html=True)
+st.markdown("""
+<p style="text-align:right" dir="rtl">
+    لقد تم جمع بيانات الوظائف المعلنة على منصة جدارات وحللتها لأرى إذا كانت الرياض هي أكثر مدينة تعلن عن وظائف لحديثي التخرج.<br>
+    تم تجميع البيانات من قبل 
+    <a href="https://www.linkedin.com/in/moayadalkhozayem/" target="_blank" style="color: #80a3ec; font-weight: bold; text-decoration: none;">
+        مؤيد الخزيم
+    </a>
+</p>
+""", unsafe_allow_html=True)
 
 # Section: Region Chart
 st.markdown('<h3 style="text-align:right" dir="rtl">هل الرياض هي المدينة الأكثر إعلانًا عن الوظائف؟</h3>', unsafe_allow_html=True)
